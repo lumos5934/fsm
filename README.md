@@ -14,7 +14,7 @@ StateMachine은 현재 State를 관리하며, Update 호출 시 등록된 조건
 <br>
 <br>
 
-### State 구현
+#### State 구현
 `IState`를 상속하여 State를 구현합니다. <br>
 
 ```cs
@@ -45,7 +45,7 @@ public class IdleState : IState
 <br> 
 <br>
 
-### State 등록
+#### State 등록
 ```cs
 var idle = new IdleState();
 var run = new RunState();
@@ -58,7 +58,7 @@ stateMachine.SetState(idle);
 <br>
 <br>
 
-### Transition 등록
+#### Transition 등록
 
 특정 State에서 다른 State로 전환되는 조건을 등록합니다. <br>
 
@@ -77,7 +77,7 @@ stateMachine.AddTransition(
 <br>
 <br>
 
-### Any Transition
+#### Any Transition
 
 현재 State와 관계없이 동작하는 Transition을 등록합니다.<br>
 
@@ -93,7 +93,7 @@ stateMachine.AddAnyTransition(
 <br> 
 <br>
 
-### Update
+#### Update
 
 StateMachine의 Update를 호출하여 상태 전환 및 State Update를 처리합니다.<br>
 
@@ -120,7 +120,7 @@ void FixedUpdate()
 <br> 
 <br>
 
-### State 변경 이벤트
+#### State 변경 이벤트
 State 변경 시 이전 State와 현재 State를 전달받을 수 있습니다. <br>
 
 ```cs
@@ -137,7 +137,7 @@ stateMachine.OnStateChanged += (from, to) =>
 
 ## 📖API
 
-### StateMachine
+#### StateMachine
 **`SetState(IState state)`** : 현재 State를 변경합니다. 기존 State가 존재하면 `OnExit()`가 호출되고, 새로운 State는 `OnEnter()`가 호출됩니다.<br>
 **`Update()`** : Transition 조건을 검사하고 조건이 만족되면 State를 변경한 뒤 현재 State의 `OnUpdate()`를 실행합니다.<br>
 **`FixedUpdate()`** : 현재 State의 `OnFixedUpdate()`를 실행합니다.<br>
@@ -150,7 +150,7 @@ stateMachine.OnStateChanged += (from, to) =>
 <br>
 
 
-### IState
+#### IState
 **`OnEnter()`** : State 진입 시 호출됩니다.<br>
 **`OnUpdate()`** : StateMachine의 `Update()` 호출 시 현재 State에서 실행됩니다.<br>
 **`OnFixedUpdate()`** : StateMachine의 `FixedUpdate()` 호출 시 현재 State에서 실행됩니다.<br>
@@ -159,7 +159,7 @@ stateMachine.OnStateChanged += (from, to) =>
 
 <br>
 
-### Transition
+#### Transition
 **`TargetState`** : Transition 조건 만족 시 이동할 State입니다.<br>
 **`Condition()`** : Transition 실행 여부를 판단하는 조건입니다.<br>
 
